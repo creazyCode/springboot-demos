@@ -1,9 +1,9 @@
 package com.doaction.demo;
 
 
-import com.twz.base.bean.IResultCode;
+import com.doaction.demo.common.error.IResultCode;
 
-public enum AdminResultCode implements IResultCode {
+public enum ResultCode implements IResultCode {
 
                     USER_NOT_EXIST("U0000", "用户不存在"),
                     USER_FORBIDDEN("U0006", "账户被限制，请联系管理员"),
@@ -51,7 +51,7 @@ public enum AdminResultCode implements IResultCode {
     private String msg;
 
     // 构造方法
-    AdminResultCode(String code, String msg) {
+    ResultCode(String code, String msg) {
         this.code = code;
         this.msg = msg;
     }
