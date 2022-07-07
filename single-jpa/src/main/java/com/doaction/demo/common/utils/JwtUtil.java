@@ -1,22 +1,28 @@
 package com.doaction.demo.common.utils;
 
+import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTSigner;
 import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.doaction.demo.common.constants.Consts;
+import com.doaction.demo.common.constants.JwtKeys;
 import com.twz.base.constants.TokenConsts;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 @Slf4j
 public class JwtUtil {
 
-    private static final String secret = "This secret is Used for Signing userToken";
+    private static final String jwt_secret = "This secret is Used for Signing userToken";
+    private static final String JWT_ISSUER = "Demo Project Issuer";
     private static final String issuer = "etet";
 
-    public static final long EXPIRE_TIME = 30 * 60 * 1000;
+    public static final long EXPIRE_TIME = 30 * Consts.MIN_M_S;
 
 	private static Logger logger = LoggerFactory.getLogger(JwtUtil.class);
 
@@ -54,32 +60,17 @@ public class JwtUtil {
         return null;
     }
 
-    public static String signJWT(String uid, String addr, String code){
-        // issued at claim
-        final long iat = System.currentTimeMillis() / 1000L;
-        // expires claim. In this case the token expires in 1800 seconds
-        //final long exp = iat + 1800000000L;//30分钟
-        final long exp = iat + 7*24*60*60L;//10小时
-
-        final JWTSigner signer = new JWTSigner(secret);
-        final HashMap<String, Object> claims = new HashMap<String, Object>();
-        claims.put("iss", issuer);
-        claims.put("exp", exp);
-        claims.put("iat", iat);
-        claims.put("userNo", uid);
-        claims.put(TokenConsts.ACCOUNT_ADDR, addr);
-        claims.put(TokenConsts.ACCOUNT_NAME, code);
-        final String jwt = signer.sign(claims);
-        return jwt;
-    }
-
-    public static String sign(String username, String secret) {
-        Date date = new Date(System.currentTimeMillis() + EXPIRE_TIME);
+    public static String sign(String userId, String roleId, String userName, String secret) {
+        final long jwtIat = System.currentTimeMillis();
+        final long jwtExp = jwtIat + EXPIRE_TIME;
         Algorithm algorithm = Algorithm.HMAC256(secret);
-        // 附带username信息
         return JWT.create()
-                .withClaim("username", username)
-                .withExpiresAt(date)
+                .withIssuer(JWT_ISSUER)
+                .withIssuedAt(new Date(jwtIat))
+                .withExpiresAt(new Date(jwtExp))
+                .withClaim(JwtKeys.CID, userId)
+                .withClaim(JwtKeys.RID, roleId)
+                .withClaim(JwtKeys.CNAME, userName)
                 .sign(algorithm);
 
     }
