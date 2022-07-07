@@ -3,19 +3,22 @@ package com.doaction.demo.common.enums;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+/**
+ * Boolean 型枚举
+ */
 @Getter
 @AllArgsConstructor
 public enum BooleanEnum {
-	PROVINCE(1, "省份"),
-	CITY(2, "市区"),
-	AREA(3, "区域"),
+
+	FALSE(0, "否"),
+	TRUE(1, "是"),
 	;
 
 	private Integer code;
 	private String description;
 
-	public static AreaTypeEnum getEnumByCode(Integer code) {
-		for (AreaTypeEnum statusEnum : AreaTypeEnum.values()) {
+	public static BooleanEnum getEnumByCode(Integer code) {
+		for (BooleanEnum statusEnum : BooleanEnum.values()) {
 			if (code.equals(statusEnum.getCode())) {
 				return statusEnum;
 			}
@@ -25,8 +28,8 @@ public enum BooleanEnum {
 
 	public static boolean isValid(Integer code){
 		boolean flag = false;
-		for(AreaTypeEnum reviewStatusEnum : AreaTypeEnum.values()){
-			if(reviewStatusEnum.getCode().equals(code)){
+		for(BooleanEnum booleanEnum : BooleanEnum.values()){
+			if(booleanEnum.getCode().equals(code)){
 				flag = true;
 				break;
 			}

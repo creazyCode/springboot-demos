@@ -22,7 +22,7 @@ public interface IResultCode {
         }
 
         public String message() {
-            return "系统错误，请稍后重试！";
+            return "系统错误，请稍后重试";
         }
     };
 
