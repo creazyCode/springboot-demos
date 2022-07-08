@@ -10,9 +10,9 @@ public class Consts {
 	public static final long HOUR_M_S = 60L * MIN_M_S;
 	public static final long DAY_M_S = 24L * HOUR_M_S;
 
-	public static final String DATE_FORMAT = "yyyy-MM-dd";
-	public static final String MONTH_DATE_FORMAT = "yyyy-MM";
-	public static final String TIME_FORMAT = "HH:mm:ss";
-	public static final String TIME_STAMP_FORMAT = "yyyy-MM-dd HH:mm:ss";
+	public static final String DATE_FORMAT_YYYY_MM_DD = "yyyy-MM-dd";
+	public static final String DATE_FORMAT_YYYY_MM = "yyyy-MM";
+	public static final String TIME_FORMAT_HH_MM_SS = "HH:mm:ss";
+	public static final String DATE_FORMAT_YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
 
 }
