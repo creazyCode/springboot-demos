@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.UUID;
 
 @Data
-public class ReqBase implements Serializable {
+public class ApiReq implements Serializable {
 
     private static final long serialVersionUID = 9216354136713685159L;
 

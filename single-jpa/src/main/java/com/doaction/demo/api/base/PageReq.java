@@ -5,12 +5,12 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Data
-public class ReqBasePage extends ReqBase {
+public class PageReq extends ApiReq {
 
     @ApiModelProperty(value = "pageNum, default=1")
     private Integer pageNum = 1;
 
-    @ApiModelProperty(value = "pageSize, default=12")
-    private Integer pageSize = 12;
+    @ApiModelProperty(value = "pageSize, default=10")
+    private Integer pageSize = 10;
 
 }

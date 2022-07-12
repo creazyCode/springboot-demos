@@ -8,7 +8,7 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
-public enum BooleanEnum {
+public enum BoolEnum {
 
 	FALSE(0, "否"),
 	TRUE(1, "是"),
@@ -17,8 +17,8 @@ public enum BooleanEnum {
 	private Integer code;
 	private String description;
 
-	public static BooleanEnum getEnumByCode(Integer code) {
-		for (BooleanEnum statusEnum : BooleanEnum.values()) {
+	public static BoolEnum getEnumByCode(Integer code) {
+		for (BoolEnum statusEnum : BoolEnum.values()) {
 			if (code.equals(statusEnum.getCode())) {
 				return statusEnum;
 			}
@@ -28,7 +28,7 @@ public enum BooleanEnum {
 
 	public static boolean isValid(Integer code){
 		boolean flag = false;
-		for(BooleanEnum booleanEnum : BooleanEnum.values()){
+		for(BoolEnum booleanEnum : BoolEnum.values()){
 			if(booleanEnum.getCode().equals(code)){
 				flag = true;
 				break;

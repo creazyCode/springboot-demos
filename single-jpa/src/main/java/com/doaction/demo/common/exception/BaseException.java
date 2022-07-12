@@ -1,22 +1,22 @@
 package com.doaction.demo.common.exception;
 
 
-import com.doaction.demo.common.error.IResultCode;
+import com.doaction.demo.common.error.IBaseCode;
 
-public class CommonException extends RuntimeException {
+public class BaseException extends RuntimeException {
 
 	private static final long serialVersionUID = 8838429880037766070L;
 	/**
 	 * 应答码
 	 */
-	private IResultCode result;
+	private IBaseCode result;
 
 	/**
 	 * 构造方法
 	 * 
 	 * @param result
 	 */
-	public CommonException(IResultCode result) {
+	public BaseException(IBaseCode result) {
 		this(result, result.message());
 	}
 
@@ -26,7 +26,7 @@ public class CommonException extends RuntimeException {
 	 * @param result
 	 * @param message
 	 */
-	public CommonException(IResultCode result, String message) {
+	public BaseException(IBaseCode result, String message) {
 		super(message);
 		this.result = result;
 	}
@@ -37,7 +37,7 @@ public class CommonException extends RuntimeException {
 	 * @param result
 	 * @param cause
 	 */
-	public CommonException(IResultCode result, Throwable cause) {
+	public BaseException(IBaseCode result, Throwable cause) {
 		this(result, result.message(), cause);
 	}
 
@@ -48,16 +48,16 @@ public class CommonException extends RuntimeException {
 	 * @param message
 	 * @param cause
 	 */
-	public CommonException(IResultCode result, String message, Throwable cause) {
+	public BaseException(IBaseCode result, String message, Throwable cause) {
 		super(message, cause);
 		this.result = result;
 	}
 
-	public void setResult(IResultCode result) {
+	public void setResult(IBaseCode result) {
 		this.result = result;
 	}
 
-	public IResultCode getResult() {
+	public IBaseCode getResult() {
 		return result;
 	}
 }

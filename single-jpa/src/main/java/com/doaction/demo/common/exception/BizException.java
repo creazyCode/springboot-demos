@@ -1,6 +1,6 @@
 package com.doaction.demo.common.exception;
 
-import com.doaction.demo.common.error.IResultCode;
+import com.doaction.demo.common.error.IBaseCode;
 
 /**
  * 系统业务级异常
@@ -8,7 +8,7 @@ import com.doaction.demo.common.error.IResultCode;
  * @author zhaoyang
  *
  */
-public class BizException extends CommonException {
+public class BizException extends BaseException {
 
     private static final long serialVersionUID = 6141146090401109882L;
 
@@ -17,7 +17,7 @@ public class BizException extends CommonException {
      * 
      * @param result
      */
-    public BizException(IResultCode result) {
+    public BizException(IBaseCode result) {
         this(result, result.message());
     }
 
@@ -27,7 +27,7 @@ public class BizException extends CommonException {
      * @param result
      * @param message
      */
-    public BizException(IResultCode result, String message) {
+    public BizException(IBaseCode result, String message) {
         super(result, message);
     }
 
@@ -37,7 +37,7 @@ public class BizException extends CommonException {
      * @param result
      * @param cause
      */
-    public BizException(IResultCode result, Throwable cause) {
+    public BizException(IBaseCode result, Throwable cause) {
         super(result, result.message(), cause);
     }
 
@@ -48,7 +48,7 @@ public class BizException extends CommonException {
      * @param message
      * @param cause
      */
-    public BizException(IResultCode result, String message, Throwable cause) {
+    public BizException(IBaseCode result, String message, Throwable cause) {
         super(result, message, cause);
     }
 }

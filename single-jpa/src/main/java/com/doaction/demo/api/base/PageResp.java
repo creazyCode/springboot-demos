@@ -9,7 +9,7 @@ import java.util.List;
  * Created by macro on 2019/4/19.
  */
 @Data
-public class RespBasePage<T> {
+public class PageResp<T> {
     /**
      * 当前页码
      */
@@ -34,8 +34,8 @@ public class RespBasePage<T> {
     /**
      * 将PageHelper分页后的list转为分页信息
      */
-    public static <T> RespBasePage<T> restPage(List<T> list) {
-        RespBasePage<T> result = new RespBasePage<T>();
+    public static <T> PageResp<T> restPage(List<T> list) {
+        PageResp<T> result = new PageResp<T>();
         /*PageInfo<T> pageInfo = new PageInfo<T>(list);
         result.setTotalPage(pageInfo.getPages());
         result.setPageNum(pageInfo.getPageNum());
