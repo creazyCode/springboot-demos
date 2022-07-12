@@ -1,10 +1,9 @@
-package com.doaction.demo.api.base;
+package com.doaction.demo.api.base.resp;
 
 import com.doaction.demo.common.error.IBaseCode;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import org.apache.commons.lang3.StringUtils;
 
@@ -18,7 +17,7 @@ import java.io.Serializable;
 @Accessors(chain = true)
 @Builder
 @AllArgsConstructor
-public class ApiResp<T> implements Serializable {
+public class RespData<T> implements Serializable {
 
     private static final long serialVersionUID = 2520762783876870320L;
 
@@ -42,8 +41,8 @@ public class ApiResp<T> implements Serializable {
      */
     private T data;
 
-    public static <T> ApiResp<T> success() {
-        return success(null);
+    public static <T> RespData<T> ok() {
+        return ok(null);
     }
 
     /**
@@ -51,8 +50,8 @@ public class ApiResp<T> implements Serializable {
      *
      * @param data 获取的数据
      */
-    public static <T> ApiResp<T> success(T data) {
-        return success(null, data);
+    public static <T> RespData<T> ok(T data) {
+        return ok(null, data);
     }
 
     /**
@@ -61,30 +60,30 @@ public class ApiResp<T> implements Serializable {
      * @param data 获取的数据
      * @param  message 提示信息
      */
-    public static <T> ApiResp<T> success(String message, T data) {
+    public static <T> RespData<T> ok(String message, T data) {
         return result(IBaseCode.SUCCESS, message, data);
     }
 
     /**
      * 失败返回结果
      */
-    public static <T> ApiResp<T> fail(){
+    public static <T> RespData<T> fail(){
         return fail(IBaseCode.FAIL);
     }
 
-    public static <T> ApiResp<T> fail(IBaseCode errorCode) {
+    public static <T> RespData<T> fail(IBaseCode errorCode) {
         return result(errorCode, null, null);
     }
 
-    public static <T> ApiResp<T> fail(IBaseCode errorCode, T data) {
+    public static <T> RespData<T> fail(IBaseCode errorCode, T data) {
         return result(errorCode, null, data);
     }
 
-    public static <T> ApiResp<T> fail(String message){
+    public static <T> RespData<T> fail(String message){
         return result(IBaseCode.FAIL,message,null);
     }
 
-    private static <T> ApiResp<T> result(IBaseCode errorCode, String message, T data){
+    private static <T> RespData<T> result(IBaseCode errorCode, String message, T data){
         boolean success = false;
         if (IBaseCode.SUCCESS.code().equals(errorCode.code())){
             success = true;
@@ -92,7 +91,7 @@ public class ApiResp<T> implements Serializable {
         if(StringUtils.isBlank(message)){
             message = errorCode.message();
         }
-        return (ApiResp<T>) ApiResp.builder()
+        return (RespData<T>) RespData.builder()
                 .code(errorCode.code())
                 .message(message)
                 .data(data)

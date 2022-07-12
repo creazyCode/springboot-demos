@@ -1,7 +1,7 @@
 package com.doaction.demo.aop;
 
 import com.alibaba.fastjson.JSONObject;
-import com.twz.base.constants.TokenConsts;
+import com.doaction.demo.common.constants.JwtKeys;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -19,7 +19,7 @@ import java.util.Arrays;
 public class ApiLogAop {
 
     /** 以 controller 包下定义的所有请求为切入点 */
-    @Pointcut("execution( * com.twz.web.controller..*.*(..))")
+    @Pointcut("execution( * com.doaction.demo.controller..*.*(..))")
     public void webLog() {}
 
     /**
@@ -46,10 +46,9 @@ public class ApiLogAop {
         // 打印请求入参
         log.info("Request Args   : {}", Arrays.toString(joinPoint.getArgs()));
         //
-        if(null != request.getAttribute(TokenConsts.USER_NO)){
-            Long accountId = Long.valueOf((String)request.getAttribute(TokenConsts.USER_NO));
+        if(null != request.getAttribute(JwtKeys.CID)){
+            String accountId = (String)request.getAttribute(JwtKeys.CID);
             log.info("Current account id is:[{}]",accountId);
-//            String addr = (String)request.getAttribute(TokenConsts.ACCOUNT_ADDR);
         }
     }
 

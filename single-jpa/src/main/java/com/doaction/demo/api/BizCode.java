@@ -8,6 +8,7 @@ public enum BizCode implements IBaseCode {
                       UNAUTHORIZED("U0000", "非法访问"),
                     NOT_PERMISSION("U0001", "没有权限"),
                          NOT_FOUND("U0002", "请求的资源不存在"),
+                     PARAM_ILLEGAL("U0003", "请求的参数包含非法字符"),
                 HT_ADDRESS_INVALID("U0010", "登录失败"),
               TOKEN_STATUS_INVALID("U0011", "请先登录"),
               TOKEN_STATUS_EXPIRED("U0012", "会话已过期,请重新登录"),

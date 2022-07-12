@@ -1,7 +1,7 @@
 package com.doaction.demo.aop;
 
-import com.twz.api.common.CommonResult;
-import com.twz.base.bean.BizException;
+import com.doaction.demo.api.base.resp.RespData;
+import com.doaction.demo.common.exception.BizException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -27,15 +27,15 @@ public class GlobalExceptionHandler {
 
     @ResponseBody
     @ExceptionHandler({RuntimeException.class})
-    public CommonResult exceptionHandle(Exception e) {
+    public RespData exceptionHandle(Exception e) {
         log.error(e.getMessage());
         e.printStackTrace();
-        return CommonResult.failed();
+        return RespData.fail();
     }
 
     @ResponseBody
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
-    public CommonResult handleValidException(MethodArgumentNotValidException e) {
+    public RespData handleValidException(MethodArgumentNotValidException e) {
         BindingResult bindingResult = e.getBindingResult();
         String message = null;
         if (bindingResult.hasErrors()) {
@@ -46,13 +46,13 @@ public class GlobalExceptionHandler {
         }
         log.error(e.getMessage());
         e.printStackTrace();
-        return CommonResult.failed(message);
+        return RespData.fail(message);
     }
 
     @ResponseBody
     @ExceptionHandler(value = BizException.class)
-    public CommonResult handleValidException(BizException e) {
+    public RespData handleValidException(BizException e) {
         log.error(e.getMessage());
-        return CommonResult.failed(e.getResult());
+        return RespData.fail(e.getResult());
     }
 }

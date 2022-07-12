@@ -1,4 +1,4 @@
-package com.doaction.demo.api.base;
+package com.doaction.demo.api.base.resp;
 
 import lombok.Data;
 

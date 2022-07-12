@@ -1,6 +1,8 @@
 package com.doaction.demo.filter;
 
 import com.alibaba.fastjson.JSON;
+import com.doaction.demo.api.BizCode;
+import com.doaction.demo.api.base.resp.RespData;
 import com.doaction.demo.filter.xss.XssHttpServletRequestWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.Order;
@@ -45,7 +47,7 @@ public class CrosXssFilter implements Filter {
             }
         }
         if (sqlValidate(sql)){
-            outReponse(httpResponse,"含有非法字符");
+            outReponse(httpResponse);
         } else {
             log.info("crosXssFilter..........doFilter url:{},ParameterMap:{}",xssHttpServletRequestWrapper.getRequestURI(), JSON.toJSON(xssHttpServletRequestWrapper.getParameterMap()));
             chain.doFilter(xssHttpServletRequestWrapper, httpResponse);
@@ -59,15 +61,16 @@ public class CrosXssFilter implements Filter {
      * @params [httpResponse, errMsg]
      * @return void
      */
-    private void outReponse(HttpServletResponse response,String errMsg) {
+    private void outReponse(HttpServletResponse response) {
         response.setContentType("application/json; charset=utf-8");
         response.setCharacterEncoding("UTF-8");
-        BaseResultData resp = BaseResultData.fail("500",errMsg,null);
+        RespData resp = RespData.fail(BizCode.PARAM_ILLEGAL);
         PrintWriter out = null;
         try{
+            String result = JSON.toJSONString(resp);
+            log.info("crosXssFilter 异常错误：{}",result);
             out = response.getWriter();
-            out.print(JSON.toJSONString(resp));
-            log.info("crosXssFilter 返回：{}",resp.toString());
+            out.print(result);
         }catch (IOException e){
             log.error("异常错误：",e);
         }finally {

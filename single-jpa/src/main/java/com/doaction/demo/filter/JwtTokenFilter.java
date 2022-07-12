@@ -2,7 +2,7 @@ package com.doaction.demo.filter;
 
 import com.alibaba.fastjson.JSON;
 import com.doaction.demo.api.BizCode;
-import com.doaction.demo.api.base.ApiResp;
+import com.doaction.demo.api.base.resp.RespData;
 import com.doaction.demo.common.constants.JwtKeys;
 import com.doaction.demo.common.enums.CharEnum;
 import com.doaction.demo.common.pojo.JwtPayload;
@@ -47,9 +47,9 @@ public class JwtTokenFilter implements Filter {
             //todo 完善日志
             log.info("login failed ！");
             e.printStackTrace();
-            response.getWriter().print(JSON.toJSONString(ApiResp.fail(BizCode.UNAUTHORIZED)));
+            response.getWriter().print(JSON.toJSONString(RespData.fail(BizCode.UNAUTHORIZED)));
         }
-        response.getWriter().print(JSON.toJSONString(ApiResp.fail(BizCode.UNAUTHORIZED)));
+        response.getWriter().print(JSON.toJSONString(RespData.fail(BizCode.UNAUTHORIZED)));
     }
 
 
