@@ -3,7 +3,7 @@ package com.doaction.demo.common.pojo;
 import lombok.Data;
 
 @Data
-public class HttpResultDto {
+public class HttpResult {
 
     private int status;
 
@@ -11,10 +11,10 @@ public class HttpResultDto {
 
     private String message;
 
-    public HttpResultDto() {
+    public HttpResult() {
     }
 
-    public HttpResultDto(int statusCode, String result, String message) {
+    public HttpResult(int statusCode, String result, String message) {
         this.status = statusCode;
         this.result = result;
         this.message = message;
