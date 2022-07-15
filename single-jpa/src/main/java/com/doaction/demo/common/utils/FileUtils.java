@@ -21,14 +21,6 @@ import java.util.List;
 
 import static com.blankj.utilcode.utils.ConstUtils.*;
 
-/**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2016/8/11
- *     desc  : 文件相关工具类
- * </pre>
- */
 public class FileUtils {
 
     private FileUtils() {
@@ -41,7 +33,8 @@ public class FileUtils {
      * @param filePath 文件路径
      * @return 文件
      */
-    public static File getFileByPath(String filePath) {
+    public static File getFile(String filePath) {
+
         return StringUtils.isSpace(filePath) ? null : new File(filePath);
     }
 
